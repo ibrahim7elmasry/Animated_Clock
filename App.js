@@ -12,8 +12,9 @@ import {
 
 import dayjs from 'dayjs'
 
- const {width} = Dimensions.get('screen');
- const SIZE = width * 0.9;
+ const {width ,height} = Dimensions.get('screen');
+ const Width_SIZE = width ;
+ const HEIGHT_SIZE = height ;
  const TICK_INTERVAL = 1000;
 
  export default class app extends React.Component {
@@ -100,15 +101,11 @@ import dayjs from 'dayjs'
 
   return (
     <>
-    <StatusBar hidden={true} />
-      {/* 
-      <SafeAreaView> */}
-             <Animated.View style={[styles.bigQuadran, {transform: [{scale: bigQuadranScale}]}]} />
-             <Animated.View style={[styles.mediumQuadran, {transform:[{scale: mediumQuadranScale}]}]} />
- 
-           <View style={styles.container}>   
-
-               <Animated.View style={[styles.mover,transformHours]}>
+    <StatusBar hidden={true} /> 
+       <View style={styles.container}>
+      <Animated.View style={[styles.bigQuadran, {transform: [{scale: bigQuadranScale}]}]} />
+      <Animated.View style={[styles.mediumQuadran, {transform:[{scale: mediumQuadranScale}]}]} />
+      <Animated.View style={[styles.mover,transformHours]}>
                   <View style={styles.hours} />
                </Animated.View>
 
@@ -119,95 +116,79 @@ import dayjs from 'dayjs'
                <Animated.View style={[styles.mover, transformSeconds]}>
                   <View style={styles.seconds} />
                </Animated.View>
-        <Animated.View style={[styles.smallQuadran, {transform: [{scale: smallQuadranScale}]}]} />
-
-           </View>
-            
-       {/* </SafeAreaView> */}
-    </>
+      <Animated.View style={[styles.smallQuadran, {transform: [{scale: smallQuadranScale}]}]} />
+     
+      </View>
+     </>
   );
 };
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+     flex:1,
      backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center',    
+    justifyContent: 'center',
+    // position:'relative'    
   },
-  mover:{
-    position: 'absolute',
-    // elevation:6,
-    height: SIZE,
-    width: SIZE,  
-    alignItems:'center',
-    justifyContent:'flex-start',
- 
- 
-  },
+   mover:{
+    height:Width_SIZE,
+    width:Width_SIZE,
+     position: 'absolute', 
+    alignSelf: 'center',
+     },
   hours:{
     backgroundColor: 'rgba(0,40,0,0.7)',
     height: '35%',
-    marginTop: '15%',
-    width:4,
+     width:4,
     borderRadius: 4,
-    // position: 'absolute',
-    // elevation:3
-//  zIndex: 6
-  },
+   alignSelf: 'center',
+   marginTop: '15%',
+    },
   minutes:{
     backgroundColor: 'rgba(0,0,0,0.8)',
     height: '45%',
-    marginTop: '5%',
-    width:4,
+     width:4,
     borderRadius: 3 ,
-    // position: 'absolute',
-    // elevation:3
+    alignSelf: 'center',
+   marginTop: '5%',
+
   },
   seconds:{
     backgroundColor: 'rgba(227,71,134,1)',
     height: '50%',
     width:2,
     borderRadius: 2,
-    // position: 'absolute',
-    //  elevation:3
+    alignSelf: 'center',
+    borderRadius: 2
   },
   bigQuadran:{
-    height: SIZE * 0.8,
-    width: SIZE * 0.8,
-    borderRadius: SIZE* 0.4 ,
-    backgroundColor: 'rgba(200,200,200,0.2)', 
-    top:SIZE/2   ,
-    left:SIZE/2 - 130,
-    position:'absolute',
-    elevation:1,
+     height:Width_SIZE*.8,
+    width:Width_SIZE*.8,
+    borderRadius:Width_SIZE,
+    position: 'absolute', 
+    backgroundColor:'rgba(20,20,20,.3)',
+    alignSelf: 'center',
   },
   mediumQuadran:{
-    // height: SIZE * 0.5,
-    // width: SIZE * 0.5,
-    borderRadius: SIZE * 0.7,
-
-    height:200,
-    width:200,
-     backgroundColor: 'rgba(200,200,200,0.3)',
-     top:SIZE/2 + 50 ,
-     left:SIZE/2 - 80 ,
-     position:'absolute',
-    elevation:2,
-    
+    height:Width_SIZE*.5,
+    width:Width_SIZE*.5,
+    borderRadius:Width_SIZE,
+    position: 'absolute', 
+    backgroundColor: 'rgba(55,55,55,.6)',
+    alignSelf: 'center',    
   },
   smallQuadran:{
-    width: 10,
-    height:10,
-    borderRadius:5,
+    height:Width_SIZE*.02,
+    width:Width_SIZE*.02,
+    borderRadius:Width_SIZE,
+    alignItems:'center',
+    position: 'absolute', 
     backgroundColor: 'rgba(227,71,134,1)',
-    top:SIZE - 35,
-    left:SIZE/2 + 15 ,
-    position:'absolute',
-    // elevation:1
-  }
-
+     alignSelf: 'center',
+     elevation:2
+   }
   
 });
 
